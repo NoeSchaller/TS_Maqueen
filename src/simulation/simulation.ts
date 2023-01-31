@@ -1,5 +1,16 @@
 import Phaser from "phaser";
 import PhaserRaycaster from "phaser-raycaster";
+import { CircleMark } from "../environnement/mark/circleMark";
+import { PolygoneMark } from "../environnement/mark/polygoneMark";
+import { RectangleMark } from "../environnement/mark/rectangleMark";
+import { CircleWall } from "../environnement/wall/circleWall";
+import { PolygoneWall } from "../environnement/wall/polygoneWall";
+import { RectangleWall } from "../environnement/wall/rectangleWall";
+import { CircleZone } from "../environnement/zones/circleZone";
+import { PolygoneZone } from "../environnement/zones/polygoneZone";
+import { RectangleZone } from "../environnement/zones/rectangleZone";
+import { MaqueenLite } from "../robot/maqueeLite";
+import { MaqueenPlus } from "../robot/maqueenPlus";
 import { Field } from "./scene/field";
 import { Overlay } from "./scene/overlay";
 
@@ -18,7 +29,7 @@ export class Simulation {
     zoom: number = 0.8,
     mouse: boolean = true,
     debug: boolean = false,
-    background: number = 0xccac0
+    background: number = 0x777777
   ) {
     this.robots = [];
     this.walls = [];

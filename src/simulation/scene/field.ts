@@ -1,3 +1,15 @@
+import { CircleMark } from "../../environnement/mark/circleMark";
+import { PolygoneMark } from "../../environnement/mark/polygoneMark";
+import { RectangleMark } from "../../environnement/mark/rectangleMark";
+import { CircleWall } from "../../environnement/wall/circleWall";
+import { PolygoneWall } from "../../environnement/wall/polygoneWall";
+import { RectangleWall } from "../../environnement/wall/rectangleWall";
+import { CircleZone } from "../../environnement/zones/circleZone";
+import { PolygoneZone } from "../../environnement/zones/polygoneZone";
+import { RectangleZone } from "../../environnement/zones/rectangleZone";
+import { MaqueenLite } from "../../robot/maqueeLite";
+import { MaqueenPlus } from "../../robot/maqueenPlus";
+
 export class Field extends Phaser.Scene {
   protected mapLoad: Function;
   protected mapCreate: Function;
@@ -47,7 +59,7 @@ export class Field extends Phaser.Scene {
     this.mapCreate(this);
 
     if (this.mouse) {
-      this.matter.add.mouseSpring({ stiffness: 0.001 }).constraint;
+      this.matter.add.mouseSpring({ stiffness: 0.001 });
     }
 
     this.scene.launch("overlay", [this.robots, this.cameras.main]);

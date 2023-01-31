@@ -1,3 +1,6 @@
+import { MaqueenLite } from "../../robot/maqueeLite";
+import { MaqueenPlus } from "../../robot/maqueenPlus";
+
 export class Overlay extends Phaser.Scene {
   protected height: number;
   protected initZoom: number;
@@ -5,8 +8,8 @@ export class Overlay extends Phaser.Scene {
   protected camera: any;
   protected buttons: any[];
   protected echelle: any;
-  protected cursor? :any;
-  protected  keyboardControl?: boolean;
+  protected cursor?: any;
+  protected keyboardControl?: boolean;
 
   constructor(height: number, zoom: number) {
     super("overlay");
@@ -36,8 +39,8 @@ export class Overlay extends Phaser.Scene {
       .text(10, 60, "-", {
         color: "#000",
         backgroundColor: "#fff",
-        padding: 1,
-        fontSize: '40',
+        padding: { left: 3, right: 3, top: 3, bottom: 3 },
+        fontSize: "30px",
       })
       .setInteractive()
       .on("pointerdown", () => {
@@ -48,8 +51,8 @@ export class Overlay extends Phaser.Scene {
       .text(10, 10, "+", {
         color: "#000",
         backgroundColor: "#fff",
-        padding: 1,
-        fontSize: '40',
+        padding: { left: 3, right: 3, top: 3, bottom: 3 },
+        fontSize: "30px",
       })
       .setInteractive()
       .on("pointerdown", () => {
@@ -61,7 +64,7 @@ export class Overlay extends Phaser.Scene {
         .text(10, 110, "Free", {
           color: "#000",
           backgroundColor: "#999",
-          padding: 3,
+          padding: { left: 3, right: 3, top: 3, bottom: 3 },
         })
         .setInteractive()
         .on("pointerdown", () => {
@@ -77,7 +80,7 @@ export class Overlay extends Phaser.Scene {
           .text(10, 140 + 30 * i, this.robots[i].name, {
             color: "#000",
             backgroundColor: "#999",
-            padding: 3,
+            padding: { left: 3, right: 3, top: 3, bottom: 3 },
           })
           .setInteractive()
           .on("pointerdown", () => {
@@ -91,7 +94,7 @@ export class Overlay extends Phaser.Scene {
       );
     }
 
-    this.cursor = this.add.text(0, 0, "<=", { color: "#000", fontSize: 20 });
+    this.cursor = this.add.text(0, 0, "<=", { color: "#000", fontSize: "20px" });
 
     if (this.robots.length == 0) {
       this.keyboardControl = true;
@@ -105,22 +108,22 @@ export class Overlay extends Phaser.Scene {
 
   public update() {
     if (this.keyboardControl) {
-      const inputs = this.input.keyboard.addKeys({
+      this.input.keyboard.addKeys({
         up: "up",
         down: "down",
         left: "left",
-        right: "right",
+        right: "right"
       });
 
-      if (inputs.up.isDown) {
+      if (this.input.keyboard.keys[38].isDown) {
         this.camera.scrollY -= 5 / this.camera.zoom;
-      } else if (inputs.down.isDown) {
+      } else if (this.input.keyboard.keys[40].isDown) {
         this.camera.scrollY += 5 / this.camera.zoom;
       }
 
-      if (inputs.left.isDown) {
+      if (this.input.keyboard.keys[37].isDown) {
         this.camera.scrollX -= 5 / this.camera.zoom;
-      } else if (inputs.right.isDown) {
+      } else if (this.input.keyboard.keys[39].isDown) {
         this.camera.scrollX += 5 / this.camera.zoom;
       }
     }

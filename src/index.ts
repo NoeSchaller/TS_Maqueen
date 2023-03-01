@@ -1,13 +1,13 @@
 
-import { CircleMark } from "./src/environnement/mark/circleMark";
-import { RectangleMark } from "./src/environnement/mark/rectangleMark";
-import { CircleWall } from "./src/environnement/wall/circleWall";
-import { RectangleWall } from "./src/environnement/wall/rectangleWall";
-import { CircleZone } from "./src/environnement/zones/circleZone";
-import { RectangleZone } from "./src/environnement/zones/rectangleZone";
-import { MaqueenLite } from "./src/robot/maqueeLite";
-import { MaqueenPlus } from "./src/robot/maqueenPlus";
-import { Simulation } from "./src/simulation/simulation";
+import { CircleMark } from "./environnement/mark/circleMark";
+import { RectangleMark } from "./environnement/mark/rectangleMark";
+import { CircleWall } from "./environnement/wall/circleWall";
+import { RectangleWall } from "./environnement/wall/rectangleWall";
+import { CircleZone } from "./environnement/zones/circleZone";
+import { RectangleZone } from "./environnement/zones/rectangleZone";
+import { MaqueenLite } from "./robot/maqueeLite";
+import { MaqueenPlus } from "./robot/maqueenPlus";
+import { Simulation } from "./simulation/simulation";
 
 function load(scene: any) {}
 

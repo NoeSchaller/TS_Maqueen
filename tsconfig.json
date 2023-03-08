@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["es5", "es6", "dom"],
-    "allowJs": false,
+    "checkJs": false,
     "skipLibCheck": false,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
@@ -13,5 +13,6 @@
     "isolatedModules": true,
     "noEmit": false
   },
-  "include": ["./src/**/*", "src/index.ts"]
+  "include": ["./src/**/*"],
+  "exclude": ["./build/index.js"]
 }

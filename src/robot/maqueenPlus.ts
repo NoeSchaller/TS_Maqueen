@@ -1,3 +1,4 @@
+import * as type from "../type";
 import { Motor } from "../components/actuator/motor";
 import { RgbLed } from "../components/actuator/rgbLed";
 import { Infrared } from "../components/captor/infrared";
@@ -9,7 +10,7 @@ export class MaqueenPlus {
   public type: string;
   protected angle: number;
   protected position: { x: number; y: number };
-  readonly body: any;
+  readonly body: any ;
   readonly motorLeft: Motor;
   readonly motorRight: Motor;
   protected ultrasonic: Ultrasonic;
@@ -23,7 +24,7 @@ export class MaqueenPlus {
   readonly ledRight: RgbLed;
   public i2c: I2cPlus;
 
-  constructor(scene: any, name: string, x: number, y: number, angle: number) {
+  constructor(scene: type.Scene, name: string, x: number, y: number, angle: number) {
     //mise  en place de variables
     this.name = name;
     this.type = "maqueenPlus";
@@ -33,11 +34,11 @@ export class MaqueenPlus {
     //mise en place de l'élément body
     this.body = scene.matter.add
       .sprite(x, y, "plusBodyPic", undefined, {
-        shape: scene.cache.json.get("plusShape").body,
+        vertices: scene.cache.json.get("plusShape").body,
+        frictionAir: 0,
+        angle: angle
       })
-      .setFrictionAir(0)
       .setDepth(2)
-      .setAngle(angle);
 
     //mise en place des moteurs
     let speedGrowth = function (power: number) {

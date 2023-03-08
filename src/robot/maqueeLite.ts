@@ -1,3 +1,4 @@
+import * as type from "../type";
 import { Led } from "../components/actuator/led";
 import { Motor } from "../components/actuator/motor";
 import { Infrared } from "../components/captor/infrared";
@@ -23,7 +24,7 @@ export class MaqueenLite {
   public pin8: Pin;
   public pin12: Pin;
   public i2c: I2cLite;
-  constructor(scene: any, name: string, x: number, y: number, angle: number) {
+  constructor(scene: type.Scene, name: string, x: number, y: number, angle: number) {
     //mise  en place de variables
     this.name = name;
     this.type = "maqueenLite";
@@ -33,11 +34,11 @@ export class MaqueenLite {
     //mise en place de l'élément body
     this.body = scene.matter.add
       .sprite(x, y, "liteBodyPic", undefined, {
-        shape: scene.cache.json.get("liteShape").body,
+        vertices: scene.cache.json.get("liteShape").body,
+        frictionAir: 0,
+        angle: angle
       })
-      .setFrictionAir(0)
-      .setDepth(2)
-      .setAngle(angle);
+      .setDepth(2);
 
     //mise en place des moteurs
     let speedGrowth = function (power: number) {

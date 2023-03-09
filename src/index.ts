@@ -8,10 +8,11 @@ import { RectangleZone } from "./environnement/zones/rectangleZone";
 import { MaqueenLite } from "./robot/maqueeLite";
 import { MaqueenPlus } from "./robot/maqueenPlus";
 import { Simulation } from "./simulation/simulation";
+import * as type from "@type"
 
-function load(scene: any) {}
+function load(scene: type.Scene) {}
 
-function create(scene: any) {
+function create(scene: type.Scene) {
   new MaqueenLite(scene, "N1", 500, 500, 60);
 
   new MaqueenPlus(scene, "N2", 400, 400, 45);

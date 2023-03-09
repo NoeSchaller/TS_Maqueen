@@ -10,7 +10,7 @@ export class MaqueenPlus {
   public type: string;
   protected angle: number;
   protected position: { x: number; y: number };
-  readonly body: any ;
+  readonly body: type.Sprite ;
   readonly motorLeft: Motor;
   readonly motorRight: Motor;
   protected ultrasonic: Ultrasonic;

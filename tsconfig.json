@@ -11,7 +11,10 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false
+    "noEmit": false,
+    "paths": {
+      "@type*": ["./src/type"]
+    }
   },
   "include": ["./src/**/*"],
   "exclude": ["./build/index.js"]

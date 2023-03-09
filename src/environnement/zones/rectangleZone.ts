@@ -1,15 +1,17 @@
+import * as type from "@type";
+
 export class RectangleZone {
-  protected scene: any;
+  protected scene: type.Scene;
   protected callback: Function;
   protected position: { x: number; y: number };
   protected scale: { x: number; y: number };
   protected angle: number;
-  protected body: any;
+  protected body: type.Rectangle;
   protected type: string;
   protected shape: string;
 
   constructor(
-    scene: any,
+    scene: type.Scene,
     x: number,
     y: number,
     width: number,
@@ -27,11 +29,8 @@ export class RectangleZone {
     this.scale = { x: 1, y: 1 };
     this.angle = angle;
     this.body = scene.matter.add
-      .gameObject(scene.add.rectangle(x, y, width, height))
-      .setStatic(true)
-      .setCollidesWith(0)
-      .setAngle(angle)
-      .setFillStyle(color, alpha);
+      .gameObject(scene.add.rectangle(x, y, width, height).setFillStyle(color, alpha), {isStatic: true, onCollideWith: 0, angle: angle})
+      ;
 
     scene.zones.push(this);
   }
@@ -55,7 +54,7 @@ export class RectangleZone {
 
   public update() {
     for (let i = 0; i < this.scene.robots.length; i++) {
-      if (this.scene.matter.overlap(this.body, this.scene.robots[i].body)) {
+      if (this.scene.matter.overlap(this.body, [this.scene.robots[i].body])) {
         this.callback(this.scene.robots[i], this);
       }
     }

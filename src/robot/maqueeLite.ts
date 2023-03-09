@@ -11,7 +11,7 @@ export class MaqueenLite {
   public type: string;
   protected angle: number;
   protected position: { x: number; y: number };
-  readonly body: any;
+  readonly body: type.Sprite;
   readonly leftMotor: Motor;
   readonly rightMotor: Motor;
   public ultrasonic: Ultrasonic;

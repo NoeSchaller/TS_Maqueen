@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["es5", "es6", "dom"],
+    "lib": ["ESNext"],
     "checkJs": false,
     "skipLibCheck": false,
     "esModuleInterop": false,
@@ -11,11 +11,10 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false,
+    "noEmit": true,
     "paths": {
-      "@type*": ["./src/type"]
+      "@type*": ["/src/type"]
     }
   },
-  "include": ["./src/**/*"],
-  "exclude": ["./build/index.js"]
+  "include": ["src"]
 }

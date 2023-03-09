@@ -1,32 +1,30 @@
 {
-  "name": "phaser3-rollup-typescript",
-  "version": "1.1.0",
-  "description": "Phaser 3 TypeScript Starter",
-  "main": "dist/index.js",
+  "name": "maqueen-simulation",
+  "description": "TM ts",
+  "main": "/src/index.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/geocine/phaser3-rollup-typescript.git"
-  },
-  "author": "Aivan Monceller",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/geocine/phaser3-rollup-typescript/issues"
-  },
-  "homepage": "https://github.com/geocine/phaser3-rollup-typescript#readme",
   "devDependencies": {
     "@types/node": "^17.0.31",
-    "phaser": "^3.55.2",
-    "ts-loader": "^9.4.2",
     "typescript": "^4.6.4",
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.2"
+    "vite": "^4.1.4"
   },
   "dependencies": {
+    "phaser": "^3.55.2",
     "phaser-raycaster": "^0.10.5"
-  }
+  },
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NoeSchaller/TS_Maqueen.git"
+  },
+  "author": "Noe Schaller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NoeSchaller/TS_Maqueen/issues"
+  },
+  "homepage": "https://github.com/NoeSchaller/TS_Maqueen#readme"
 }

@@ -34,7 +34,10 @@ export class MaqueenLite {
     //mise en place de l'élément body
     this.body = scene.matter.add
       .sprite(x, y, "liteBodyPic", undefined, {
-        vertices: scene.cache.json.get("liteShape").body,
+        vertices: [{ "x": 62, "y": 0 },
+        { "x": 70, "y": 32 },
+        { "x": 80, "y": 32 },
+        { "x": 80, "y": 15 }],
         frictionAir: 0,
         angle: angle
       })

@@ -15,10 +15,10 @@ import { Field } from "./scene/field";
 import { Overlay } from "./scene/overlay";
 
 export class Simulation {
-  protected robots: Array<MaqueenLite | MaqueenPlus>;
-  protected walls: Array<RectangleWall | CircleWall | PolygoneWall>;
-  protected marks: Array<RectangleMark | CircleMark | PolygoneMark>;
-  protected zones: Array<RectangleZone | CircleZone | PolygoneZone>;
+  public robots: Array<MaqueenLite | MaqueenPlus>;
+  public walls: Array<RectangleWall | CircleWall | PolygoneWall>;
+  public marks: Array<RectangleMark | CircleMark | PolygoneMark>;
+  public zones: Array<RectangleZone | CircleZone | PolygoneZone>;
   protected game: Phaser.Game;
   public constructor(
     width: number,

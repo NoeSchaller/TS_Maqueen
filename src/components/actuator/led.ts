@@ -15,15 +15,15 @@ export class Led {
         .setDepth(2);
     }
   
-    setOn(bool: boolean) {
+    public setOn(bool: boolean) {
       this.on = bool;
     }
   
-    getOn() {
+    public getOn() {
       return this.on;
     }
   
-    update() {
+    public update() {
       this.led.setPosition(
         this.reference.x +
           this.deltaOrigin *

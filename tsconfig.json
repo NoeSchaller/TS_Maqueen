@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "checkJs": false,
     "skipLibCheck": false,
     "esModuleInterop": false,
@@ -13,7 +13,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "paths": {
-      "@type*": ["/src/type"]
+      "@type": ["./src/type"],
+      "@src": ["./src"]
     }
   },
   "include": ["src"]

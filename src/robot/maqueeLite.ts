@@ -12,35 +12,50 @@ export class MaqueenLite {
   protected angle: number;
   protected position: { x: number; y: number };
   readonly body: type.Sprite;
-  readonly leftMotor: Motor;
-  readonly rightMotor: Motor;
+  public leftMotor: Motor;
+  public rightMotor: Motor;
   public ultrasonic: Ultrasonic;
   public infraredLeft: Infrared;
   public infraredRight: Infrared;
-  protected ledLeft: Led;
-  protected ledRight: Led;
+  public ledLeft: Led;
+  public ledRight: Led;
   public pin13: Pin;
   public pin14: Pin;
   public pin8: Pin;
   public pin12: Pin;
   public i2c: I2cLite;
-  constructor(scene: type.Scene, name: string, x: number, y: number, angle: number) {
+  constructor(
+    scene: type.Scene,
+    name: string,
+    x: number,
+    y: number,
+    angle: number
+  ) {
     //mise  en place de variables
     this.name = name;
     this.type = "maqueenLite";
     this.angle = angle;
     this.position = { x: x, y: y };
-
     //mise en place de l'élément body
     this.body = scene.matter.add
       .sprite(x, y, "liteBodyPic", undefined, {
-        vertices: [{ "x": 62, "y": 0 },
-        { "x": 70, "y": 32 },
-        { "x": 80, "y": 32 },
-        { "x": 80, "y": 15 }],
+        vertices: [
+          { x: 12, y: 80 },
+          { x: 70, y: 80 },
+          { x: 70, y: 32 },
+          { x: 80, y: 32 },
+          { x: 80, y: 15 },
+          { x: 62, y: 0 },
+          { x: 20, y: 0 },
+          { x: 0, y: 15 },
+          { x: 0, y: 32 },
+          { x: 12, y: 32 },
+          { x: 12, y: 80 }
+        ],
         frictionAir: 0,
-        angle: angle
+        angle: angle,
       })
+      .setOrigin(0.5, 0.5)
       .setDepth(2);
 
     //mise en place des moteurs

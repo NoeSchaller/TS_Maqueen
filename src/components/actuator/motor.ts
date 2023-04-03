@@ -1,5 +1,5 @@
 export class Motor {
-  protected scene: any;
+  public scene: any;
   protected speed: number;
   public power: number;
   public direction: number;

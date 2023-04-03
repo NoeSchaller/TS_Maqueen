@@ -10,7 +10,7 @@ export class MaqueenPlus {
   public type: string;
   protected angle: number;
   protected position: { x: number; y: number };
-  readonly body: type.Sprite ;
+  readonly body: type.Sprite;
   readonly motorLeft: Motor;
   readonly motorRight: Motor;
   protected ultrasonic: Ultrasonic;
@@ -24,7 +24,13 @@ export class MaqueenPlus {
   readonly ledRight: RgbLed;
   public i2c: I2cPlus;
 
-  constructor(scene: type.Scene, name: string, x: number, y: number, angle: number) {
+  constructor(
+    scene: type.Scene,
+    name: string,
+    x: number,
+    y: number,
+    angle: number
+  ) {
     //mise  en place de variables
     this.name = name;
     this.type = "maqueenPlus";
@@ -34,11 +40,25 @@ export class MaqueenPlus {
     //mise en place de l'élément body
     this.body = scene.matter.add
       .sprite(x, y, "plusBodyPic", undefined, {
-        vertices: scene.cache.json.get("plusShape").body,
+        vertices: [
+          { x: 12, y: 103 },
+          { x: 88, y: 103 },
+          { x: 88, y: 55 },
+          { x: 100, y: 55 },
+          { x: 100, y: 35 },
+          { x: 73, y: 0 },
+          { x: 27, y: 0 },
+          { x: 0, y: 35 },
+          { x: 0, y: 55 },
+          { x: 12, y: 55 },
+          { x: 12, y: 103 },
+        ],
         frictionAir: 0,
-        angle: angle
+        angle: angle,
+        collisionFilter: { group: 1 },
       })
-      .setDepth(2)
+      .setOrigin(0.5, 0.5)
+      .setDepth(2);
 
     //mise en place des moteurs
     let speedGrowth = function (power: number) {

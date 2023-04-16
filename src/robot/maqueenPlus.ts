@@ -1,4 +1,3 @@
-import * as type from "../type";
 import { Motor } from "../components/actuator/motor";
 import { RgbLed } from "../components/actuator/rgbLed";
 import { Infrared } from "../components/captor/infrared";
@@ -10,7 +9,7 @@ export class MaqueenPlus {
   public type: string;
   protected angle: number;
   protected position: { x: number; y: number };
-  readonly body: type.Sprite;
+  readonly body: any;
   readonly motorLeft: Motor;
   readonly motorRight: Motor;
   protected ultrasonic: Ultrasonic;
@@ -25,7 +24,7 @@ export class MaqueenPlus {
   public i2c: I2cPlus;
 
   constructor(
-    scene: type.Scene,
+    scene: any,
     name: string,
     x: number,
     y: number,

@@ -1,17 +1,15 @@
-import * as type from "@type";
-
 export class RectangleZone {
-  protected scene: type.Scene;
+  protected scene: any;
   protected callback: Function;
   protected position: { x: number; y: number };
   protected scale: { x: number; y: number };
   protected angle: number;
-  protected body: type.Rectangle;
+  protected body: any;
   protected type: string;
   protected shape: string;
 
   constructor(
-    scene: type.Scene,
+    scene: any,
     x: number,
     y: number,
     width: number,

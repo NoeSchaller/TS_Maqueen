@@ -107,7 +107,7 @@ export class Overlay extends Phaser.Scene {
   }
 
   public update() {
-    if (this.keyboardControl) {
+    if (this.keyboardControl && this.input.keyboard != null) {
       this.input.keyboard.addKeys({
         up: "up",
         down: "down",

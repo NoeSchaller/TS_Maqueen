@@ -15,7 +15,7 @@ import { Field } from "./scene/field";
 import { Overlay } from "./scene/overlay";
 
 export class Simulation {
-  public robots: Array<MaqueenLite | MaqueenPlus>;
+  public robots: any;
   public walls: Array<RectangleWall | CircleWall | PolygoneWall>;
   public marks: Array<RectangleMark | CircleMark | PolygoneMark>;
   public zones: Array<RectangleZone | CircleZone | PolygoneZone>;

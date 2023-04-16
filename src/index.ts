@@ -1,4 +1,3 @@
-import * as type from "@type";
 import { CircleMark } from "./environnement/mark/circleMark";
 import { RectangleMark } from "./environnement/mark/rectangleMark";
 import { CircleWall } from "./environnement/wall/circleWall";
@@ -13,10 +12,10 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function load(scene: type.Scene) {}
+function load(scene: any) {}
 
-function create(scene: type.Scene) {
-  new MaqueenLite(scene, "N1", 500, 500, 60);
+function create(scene: any) {
+  new MaqueenLite(scene, "N1", 500, 500, 0);
 
   new MaqueenPlus(scene, "N2", 400, 400, 45);
 
@@ -28,8 +27,8 @@ function create(scene: type.Scene) {
 
   new CircleWall(scene, 100, 100, 50);
   new CircleMark(scene, 100, 500, 50);
-  new CircleZone(scene, 100, 500, 50, function () {
-    console.log("circleZone");
+  new CircleZone(scene, 500, 500, 10, function () {
+    console.log(Date.now());
   });
 
   new RectangleMark(scene, 500, 100, 100, 100, 30);
@@ -46,8 +45,10 @@ async function main() {
     true,
     true
   );
-await sleep(1000)
+  await sleep(1000);
 
+  sim.robots[0].leftMotor.setSpeed(1, 100);
+  sim.robots[0].rightMotor.setSpeed(1, 100);
 }
 
 main();

@@ -1,4 +1,3 @@
-import * as type from "../type";
 import { Led } from "../components/actuator/led";
 import { Motor } from "../components/actuator/motor";
 import { Infrared } from "../components/captor/infrared";
@@ -11,7 +10,7 @@ export class MaqueenLite {
   public type: string;
   protected angle: number;
   protected position: { x: number; y: number };
-  readonly body: type.Sprite;
+  readonly body: any;
   public leftMotor: Motor;
   public rightMotor: Motor;
   public ultrasonic: Ultrasonic;
@@ -25,7 +24,7 @@ export class MaqueenLite {
   public pin12: Pin;
   public i2c: I2cLite;
   constructor(
-    scene: type.Scene,
+    scene: any,
     name: string,
     x: number,
     y: number,
@@ -76,8 +75,8 @@ export class MaqueenLite {
       18,
       9,
       43,
-      { x: -10, y: -4 },
-      { x: -10, y: 40 },
+      { x: 10, y: -4 },
+      { x: 10, y: 40 },
       speedGrowth
     );
 
@@ -88,8 +87,8 @@ export class MaqueenLite {
       18,
       9,
       43,
-      { x: 10, y: -4 },
-      { x: 10, y: 40 },
+      { x: -10, y: -4 },
+      { x: -10, y: 40 },
       speedGrowth
     );
 

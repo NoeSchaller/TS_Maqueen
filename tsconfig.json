@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["ESNext", "DOM"],
+    "lib": ["ESNext", "DOM", "ScriptHost"],
     "checkJs": false,
     "skipLibCheck": false,
     "esModuleInterop": false,

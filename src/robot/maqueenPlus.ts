@@ -53,14 +53,6 @@ export class MaqueenPlus {
       .setOrigin(0.5, 0.5)
       .setDepth(2);
 
-    /* mise en place de l'élément zoneCollider
-
-      Cet élément est nécéssaire car la fonction overlap utilisées pour les zones ne fonctionnent pas avec les polygones
-      */
-    this.zoneCollider = scene.matter.add
-      .gameObject(scene.add.rectangle(x, y, 100, 103))
-      .setCollidesWith(0);
-
     //mise en place des moteurs
     let speedGrowth = function (power: number) {
       return (
@@ -141,7 +133,6 @@ export class MaqueenPlus {
     this.ledRight.update();
     this.position = { x: this.body.x, y: this.body.y };
     this.angle = this.body.angle;
-    this.zoneCollider.setPosition(this.position.x, this.position.y).setAngle(this.angle)
   }
 
   public setPosition(x: number, y: number) {

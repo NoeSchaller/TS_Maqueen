@@ -15,8 +15,6 @@ function create(scene: any) {
   new MaqueenPlus(scene, "N2", 200, 0, 0);
 
   new wall.Rectangle(scene, 0, -200, 100000, 10);
-
-  new zone.Polygone(scene, 0, 0, 10,10, 0, ()=>{console.log(1)})
 }
 
 async function main() {

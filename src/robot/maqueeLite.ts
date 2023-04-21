@@ -11,8 +11,9 @@ export class MaqueenLite {
   protected angle: number;
   protected position: { x: number; y: number };
   readonly body: any;
-  public leftMotor: Motor;
-  public rightMotor: Motor;
+  readonly zoneCollider: any;
+  public motorLeft: Motor;
+  public motorRight: Motor;
   public ultrasonic: Ultrasonic;
   public infraredLeft: Infrared;
   public infraredRight: Infrared;
@@ -23,13 +24,7 @@ export class MaqueenLite {
   public pin8: Pin;
   public pin12: Pin;
   public i2c: I2cLite;
-  constructor(
-    scene: any,
-    name: string,
-    x: number,
-    y: number,
-    angle: number
-  ) {
+  constructor(scene: any, name: string, x: number, y: number, angle: number) {
     //mise  en place de variables
     this.name = name;
     this.type = "maqueenLite";
@@ -49,13 +44,20 @@ export class MaqueenLite {
           { x: 0, y: 15 },
           { x: 0, y: 32 },
           { x: 12, y: 32 },
-          { x: 12, y: 80 }
         ],
         frictionAir: 0,
         angle: angle,
       })
       .setOrigin(0.5, 0.5)
       .setDepth(2);
+
+    /* mise en place de l'élément zoneCollider
+
+      Cet élément est nécéssaire car la fonction overlap utilisées pour les zones ne fonctionnent pas avec les polygones
+      */
+    this.zoneCollider = scene.matter.add
+      .gameObject(scene.add.rectangle(x, y, 80, 80))
+      .setCollidesWith(0);
 
     //mise en place des moteurs
     let speedGrowth = function (power: number) {
@@ -68,27 +70,27 @@ export class MaqueenLite {
       );
     };
 
-    this.leftMotor = new Motor(
+    this.motorLeft = new Motor(
       scene,
       this.body,
       -35,
       18,
       9,
       43,
-      { x: 10, y: -4 },
-      { x: 10, y: 40 },
+      { x: 0, y: 0 },
+      { x: 0, y: 40 },
       speedGrowth
     );
 
-    this.rightMotor = new Motor(
+    this.motorRight = new Motor(
       scene,
       this.body,
       35,
       18,
       9,
       43,
-      { x: -10, y: -4 },
-      { x: -10, y: 40 },
+      { x: 0, y: -1 },
+      { x: 0, y: 40 },
       speedGrowth
     );
 
@@ -123,8 +125,8 @@ export class MaqueenLite {
   }
 
   public update() {
-    this.leftMotor.update();
-    this.rightMotor.update();
+    this.motorLeft.update();
+    this.motorRight.update();
     this.ultrasonic.update();
     this.infraredLeft.update();
     this.infraredRight.update();
@@ -132,49 +134,52 @@ export class MaqueenLite {
     this.ledRight.update();
     this.position = { x: this.body.x, y: this.body.y };
     this.angle = this.body.angle;
+    this.zoneCollider
+      .setPosition(this.position.x, this.position.y)
+      .setAngle(this.angle);
   }
 
   public setPosition(x: number, y: number) {
     this.body.setPosition(x, y);
-    this.leftMotor.wheel.setPosition(
+    this.motorLeft.wheel.setPosition(
       x +
-        this.leftMotor.deltaOrigin *
-          Math.cos(this.leftMotor.rotationOrigin + this.body.rotation),
+        this.motorLeft.deltaOrigin *
+          Math.cos(this.motorLeft.rotationOrigin + this.body.rotation),
       y +
-        this.leftMotor.deltaOrigin *
-          Math.sin(this.leftMotor.rotationOrigin + this.body.rotation)
+        this.motorLeft.deltaOrigin *
+          Math.sin(this.motorLeft.rotationOrigin + this.body.rotation)
     );
-    this.rightMotor.wheel.setPosition(
+    this.motorRight.wheel.setPosition(
       x +
-        this.rightMotor.deltaOrigin *
-          Math.cos(this.rightMotor.rotationOrigin + this.body.rotation),
+        this.motorRight.deltaOrigin *
+          Math.cos(this.motorRight.rotationOrigin + this.body.rotation),
       y +
-        this.rightMotor.deltaOrigin *
-          Math.sin(this.rightMotor.rotationOrigin + this.body.rotation)
+        this.motorRight.deltaOrigin *
+          Math.sin(this.motorRight.rotationOrigin + this.body.rotation)
     );
   }
 
   public setAngle(deg: number) {
     this.body.setAngle(deg);
 
-    this.leftMotor.wheel.setPosition(
+    this.motorLeft.wheel.setPosition(
       this.body.x +
-        this.leftMotor.deltaOrigin *
-          Math.cos((deg / 180) * Math.PI + this.leftMotor.rotationOrigin),
+        this.motorLeft.deltaOrigin *
+          Math.cos((deg / 180) * Math.PI + this.motorLeft.rotationOrigin),
       this.body.y +
-        this.leftMotor.deltaOrigin *
-          Math.sin((deg / 180) * Math.PI + this.leftMotor.rotationOrigin)
+        this.motorLeft.deltaOrigin *
+          Math.sin((deg / 180) * Math.PI + this.motorLeft.rotationOrigin)
     );
-    this.leftMotor.wheel.setAngle(deg);
+    this.motorLeft.wheel.setAngle(deg);
 
-    this.rightMotor.wheel.setPosition(
+    this.motorRight.wheel.setPosition(
       this.body.x +
-        this.rightMotor.deltaOrigin *
-          Math.cos((deg / 180) * Math.PI + this.rightMotor.rotationOrigin),
+        this.motorRight.deltaOrigin *
+          Math.cos((deg / 180) * Math.PI + this.motorRight.rotationOrigin),
       this.body.y +
-        this.rightMotor.deltaOrigin *
-          Math.sin((deg / 180) * Math.PI + this.rightMotor.rotationOrigin)
+        this.motorRight.deltaOrigin *
+          Math.sin((deg / 180) * Math.PI + this.motorRight.rotationOrigin)
     );
-    this.rightMotor.wheel.setAngle(deg);
+    this.motorRight.wheel.setAngle(deg);
   }
 }

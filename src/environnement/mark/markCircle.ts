@@ -1,6 +1,4 @@
-export class CircleZone {
-  protected scene: any;
-  protected callback: Function;
+export class MarkCircle {
   protected position: { x: number; y: number };
   protected scale: { x: number; y: number };
   protected angle: number;
@@ -8,32 +6,20 @@ export class CircleZone {
   protected type: string;
   protected shape: string;
 
-  constructor(
-    scene: any,
-    x: number,
-    y: number,
-    radius: number,
-    callback: Function,
-    color: number = 0xff0000,
-    alpha: number = 0.3
-  ) {
-    this.type = "zone";
+  constructor(scene: any, x: number, y: number, radius: number) {
+    this.type = "mark";
     this.shape = "circle";
-    this.scene = scene;
-    this.callback = callback;
     this.position = { x: x, y: y };
     this.scale = { x: 1, y: 1 };
     this.angle = 0;
     this.body = scene.matter.add
       .gameObject(
-        scene.add.circle(x, y, radius),
+        scene.add.circle(x, y, radius, 0x000000),
         scene.matter.add.circle(x, y, radius)
       )
-      .setStatic(true)
-      .setCollidesWith(0)
-      .setFillStyle(color, alpha);
+      .setCollidesWith(0);
 
-    scene.zones.push(this);
+    scene.marks.push(this);
   }
 
   public setPosition(x: number, y: number) {
@@ -51,13 +37,5 @@ export class CircleZone {
     this.body.setScale(x, y);
     this.body.setAngle(this.angle);
     this.scale = { x: x, y: y };
-  }
-
-  public update() {
-    for (let i = 0; i < this.scene.robots.length; i++) {
-      if (this.scene.matter.overlap(this.body, this.scene.robots[i].body)) {
-        this.callback();
-      }
-    }
   }
 }

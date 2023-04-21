@@ -1,4 +1,6 @@
-export class RectangleMark {
+export class ZoneRectangle {
+  protected scene: any;
+  protected callback: Function;
   protected position: { x: number; y: number };
   protected scale: { x: number; y: number };
   protected angle: number;
@@ -12,19 +14,26 @@ export class RectangleMark {
     y: number,
     width: number,
     height: number,
-    angle: number = 0
+    angle: number,
+    callback: Function,
+    color = 0xff0000,
+    alpha = 0.3
   ) {
-    this.type = "mark";
+    this.type = "zone";
     this.shape = "rectangle";
+    this.scene = scene;
+    this.callback = callback;
     this.position = { x: x, y: y };
     this.scale = { x: 1, y: 1 };
     this.angle = angle;
     this.body = scene.matter.add
-      .gameObject(scene.add.rectangle(x, y, width, height, 0x000000))
-      .setCollidesWith(0)
-      .setAngle(angle);
+      .gameObject(
+        scene.add.rectangle(x, y, width, height).setFillStyle(color, alpha),
+        scene.matter.add.rectangle(x, y, width, height)
+      )
+      .setCollidesWith(0);
 
-    scene.marks.push(this);
+    scene.zones.push(this);
   }
 
   public setPosition(x: number, y: number) {
@@ -42,5 +51,15 @@ export class RectangleMark {
     this.body.setScale(x, y);
     this.body.setAngle(this.angle);
     this.scale = { x: x, y: y };
+  }
+
+  public update() {
+    for (let i = 0; i < this.scene.robots.length; i++) {
+      if (
+        this.scene.matter.overlap(this.body, this.scene.robots[i].body)
+      ) {
+        this.callback(this, this.scene.robots[i]);
+      }
+    }
   }
 }

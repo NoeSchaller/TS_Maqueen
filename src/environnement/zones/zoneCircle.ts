@@ -1,4 +1,6 @@
-export class RectangleWall {
+export class ZoneCircle {
+  protected scene: any;
+  protected callback: Function;
   protected position: { x: number; y: number };
   protected scale: { x: number; y: number };
   protected angle: number;
@@ -10,22 +12,28 @@ export class RectangleWall {
     scene: any,
     x: number,
     y: number,
-    width: number,
-    height: number,
-    angle: number = 0
+    radius: number,
+    callback: Function,
+    color: number = 0xff0000,
+    alpha: number = 0.3
   ) {
-    this.type = "wall";
-    this.shape = "rectangle";
+    this.type = "zone";
+    this.shape = "circle";
+    this.scene = scene;
+    this.callback = callback;
     this.position = { x: x, y: y };
     this.scale = { x: 1, y: 1 };
-    this.angle = angle;
+    this.angle = 0;
     this.body = scene.matter.add
-      .gameObject(scene.add.rectangle(x, y, width, height, 0xff0000))
+      .gameObject(
+        scene.add.circle(x, y, radius),
+        scene.matter.add.circle(x, y, radius)
+      )
       .setStatic(true)
-      .setAngle(angle);
+      .setCollidesWith(0)
+      .setFillStyle(color, alpha);
 
-    scene.walls.push(this);
-    scene.RaycasterDomain.push(this.body);
+    scene.zones.push(this);
   }
 
   public setPosition(x: number, y: number) {
@@ -43,5 +51,15 @@ export class RectangleWall {
     this.body.setScale(x, y);
     this.body.setAngle(this.angle);
     this.scale = { x: x, y: y };
+  }
+
+  public update() {
+    for (let i = 0; i < this.scene.robots.length; i++) {
+      if (
+        this.scene.matter.overlap(this.body, this.scene.robots[i].body)
+      ) {
+        this.callback(this, this.scene.robots[i]);
+      }
+    }
   }
 }

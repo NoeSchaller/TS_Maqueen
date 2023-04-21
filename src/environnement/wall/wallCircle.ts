@@ -1,4 +1,4 @@
-export class PolygoneMark {
+export class WallCircle {
   protected position: { x: number; y: number };
   protected scale: { x: number; y: number };
   protected angle: number;
@@ -6,21 +6,24 @@ export class PolygoneMark {
   protected type: string;
   protected shape: string;
 
-  constructor(scene: any, x: number, y: number, points: any) {
-    this.type = "mark";
-    this.shape = "polygone";
+  constructor(scene: any, x: number, y: number, radius: number) {
+    this.type = "wall";
+    this.shape = "circle";
     this.position = { x: x, y: y };
     this.scale = { x: 1, y: 1 };
     this.angle = 0;
     this.body = scene.matter.add
-      .gameObject(scene.add.polygon(x, y, points, 0x000000), {
-        shape: { type: "fromVerts", verts: points, flagInternal: true },
-      })
+      .gameObject(
+        scene.add.circle(x, y, radius, 0xff0000),
+        scene.matter.add.circle(x, y, radius)
+      )
       .setStatic(true)
-      .setCollidesWith(0);
+      .setFriction(1);
 
-    scene.marks.push(this);
+    scene.walls.push(this);
+    scene.RaycasterDomain.push(this.body);
   }
+
   public setPosition(x: number, y: number) {
     this.body.setPosition(x, y);
     this.position = { x: x, y: y };

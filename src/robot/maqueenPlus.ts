@@ -10,6 +10,7 @@ export class MaqueenPlus {
   protected angle: number;
   protected position: { x: number; y: number };
   readonly body: any;
+  readonly zoneCollider: any;
   readonly motorLeft: Motor;
   readonly motorRight: Motor;
   protected ultrasonic: Ultrasonic;
@@ -23,13 +24,7 @@ export class MaqueenPlus {
   readonly ledRight: RgbLed;
   public i2c: I2cPlus;
 
-  constructor(
-    scene: any,
-    name: string,
-    x: number,
-    y: number,
-    angle: number
-  ) {
+  constructor(scene: any, name: string, x: number, y: number, angle: number) {
     //mise  en place de variables
     this.name = name;
     this.type = "maqueenPlus";
@@ -50,14 +45,21 @@ export class MaqueenPlus {
           { x: 0, y: 35 },
           { x: 0, y: 55 },
           { x: 12, y: 55 },
-          { x: 12, y: 103 },
         ],
         frictionAir: 0,
         angle: angle,
-        collisionFilter: { group: 1 },
+
       })
       .setOrigin(0.5, 0.5)
       .setDepth(2);
+
+    /* mise en place de l'élément zoneCollider
+
+      Cet élément est nécéssaire car la fonction overlap utilisées pour les zones ne fonctionnent pas avec les polygones
+      */
+    this.zoneCollider = scene.matter.add
+      .gameObject(scene.add.rectangle(x, y, 100, 103))
+      .setCollidesWith(0);
 
     //mise en place des moteurs
     let speedGrowth = function (power: number) {
@@ -76,7 +78,7 @@ export class MaqueenPlus {
       27,
       9,
       43,
-      { x: -10, y: 5 },
+      { x: -10, y: 0 },
       { x: -10, y: 49 },
       speedGrowth
     );
@@ -88,7 +90,7 @@ export class MaqueenPlus {
       27,
       9,
       43,
-      { x: 10, y: 5 },
+      { x: 10, y: -9 },
       { x: 10, y: 49 },
       speedGrowth
     );
@@ -139,6 +141,7 @@ export class MaqueenPlus {
     this.ledRight.update();
     this.position = { x: this.body.x, y: this.body.y };
     this.angle = this.body.angle;
+    this.zoneCollider.setPosition(this.position.x, this.position.y).setAngle(this.angle)
   }
 
   public setPosition(x: number, y: number) {

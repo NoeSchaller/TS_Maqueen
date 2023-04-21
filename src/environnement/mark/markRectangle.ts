@@ -1,4 +1,4 @@
-export class CircleWall {
+export class MarkRectangle {
   protected position: { x: number; y: number };
   protected scale: { x: number; y: number };
   protected angle: number;
@@ -6,22 +6,25 @@ export class CircleWall {
   protected type: string;
   protected shape: string;
 
-  constructor(scene: any, x: number, y: number, radius: number) {
-    this.type = "wall";
-    this.shape = "circle";
+  constructor(
+    scene: any,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    angle: number = 0
+  ) {
+    this.type = "mark";
+    this.shape = "rectangle";
     this.position = { x: x, y: y };
     this.scale = { x: 1, y: 1 };
-    this.angle = 0;
+    this.angle = angle;
     this.body = scene.matter.add
-      .gameObject(
-        scene.add.circle(x, y, radius, 0xff0000),
-        scene.matter.add.circle(x, y, radius)
-      )
-      .setStatic(true)
-      .setFriction(1);
+      .gameObject(scene.add.rectangle(x, y, width, height, 0x000000))
+      .setCollidesWith(0)
+      .setAngle(angle);
 
-    scene.walls.push(this);
-    scene.RaycasterDomain.push(this.body);
+    scene.marks.push(this);
   }
 
   public setPosition(x: number, y: number) {

@@ -62,7 +62,8 @@ export class Motor {
       )
       .setRotation(reference.rotation)
       .setDepth(2)
-      .setFrictionAir(3);
+      .setFrictionAir(3)
+      .setCollidesWith(0)
 
     scene.matter.add.constraint(this.wheel, reference, undefined, 1, {
       pointA: {

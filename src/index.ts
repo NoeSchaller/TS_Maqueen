@@ -14,6 +14,7 @@ import { Simulation } from "./simulation/simulation";
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+/*
 
 function load(scene: any) {
   scene.load.image("yes", "/itWork.jpg");
@@ -51,4 +52,4 @@ async function main() {
   console.log(sim.robots[0].angle)
 }
 
-main();
+main();*/

@@ -47,7 +47,7 @@ export class MaqueenPlus {
           { x: 12, y: 55 },
         ],
         frictionAir: 0,
-        angle: angle,
+        angle: angle/360*(2*Math.PI),
 
       })
       .setOrigin(0.5, 0.5)

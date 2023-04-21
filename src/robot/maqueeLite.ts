@@ -46,7 +46,7 @@ export class MaqueenLite {
           { x: 12, y: 32 },
         ],
         frictionAir: 0,
-        angle: angle,
+        angle: angle/360*(2*Math.PI),
       })
       .setOrigin(0.5, 0.5)
       .setDepth(2);

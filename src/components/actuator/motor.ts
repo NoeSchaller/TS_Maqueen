@@ -16,8 +16,8 @@ export class Motor {
     y: number,
     width: number,
     height: number,
-    point1: {x:number, y:number},
-    point2: {x: number,y:number},
+    point1: { x: number; y: number },
+    point2: { x: number; y: number },
     powerToSpeed: Function
   ) {
     this.scene = scene;
@@ -63,7 +63,7 @@ export class Motor {
       .setRotation(reference.rotation)
       .setDepth(2)
       .setFrictionAir(3)
-      .setCollidesWith(0)
+      .setCollidesWith(0);
 
     scene.matter.add.constraint(this.wheel, reference, undefined, 1, {
       pointA: {

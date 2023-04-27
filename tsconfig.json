@@ -11,11 +11,12 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,
     "paths": {
       "@type": ["./src/type"],
       "@src": ["./src"]
-    }
+    },
+    "outDir": "/build"
   },
   "include": ["src"]
 }

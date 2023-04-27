@@ -1,12 +1,13 @@
-import { CircleMark } from "../../environnement/mark/markCircle";
-import { PolygoneMark } from "../../environnement/mark/markPolygone";
-import { RectangleMark } from "../../environnement/mark/markRectangle";
-import { CircleWall } from "../../environnement/wall/wallCircle";
-import { PolygoneWall } from "../../environnement/wall/wallPolygone";
-import { RectangleWall } from "../../environnement/wall/wallRectangle";
-import { CircleZone } from "../../environnement/zones/zoneCircle";
-import { PolygoneZone } from "../../environnement/zones/zonePolygone";
-import { RectangleZone } from "../../environnement/zones/zoneRectangle";
+import { MarkCircle } from "../../environnement/mark/markCircle";
+import { MarkPolygone } from "../../environnement/mark/markPolygone";
+import { MarkRectangle } from "../../environnement/mark/markRectangle";
+import { Picture } from "../../environnement/mark/picture";
+import { WallCircle } from "../../environnement/wall/wallCircle";
+import { WallPolygone } from "../../environnement/wall/wallPolygone";
+import { WallRectangle } from "../../environnement/wall/wallRectangle";
+import { ZoneCircle } from "../../environnement/zones/zoneCircle";
+import { ZonePolygone } from "../../environnement/zones/zonePolygone";
+import { ZoneRectangle } from "../../environnement/zones/zoneRectangle";
 import { MaqueenLite } from "../../robot/maqueeLite";
 import { MaqueenPlus } from "../../robot/maqueenPlus";
 
@@ -14,16 +15,16 @@ export class Field extends Phaser.Scene {
   protected mapLoad: Function;
   protected mapCreate: Function;
   protected robots: Array<MaqueenLite | MaqueenPlus>;
-  protected walls: Array<RectangleWall | CircleWall | PolygoneWall>;
-  protected marks: Array<RectangleMark | CircleMark | PolygoneMark>;
-  protected zones: Array<RectangleZone | CircleZone | PolygoneZone>;
+  protected walls: Array<WallRectangle | WallCircle | WallPolygone>;
+  protected marks: Array<MarkRectangle | MarkCircle | MarkPolygone | Picture>;
+  protected zones: Array<ZoneRectangle | ZoneCircle | ZonePolygone>;
   protected RaycasterDomain: Array<MaqueenLite | MaqueenPlus>;
   protected mouse: boolean;
   constructor(
     robots: Array<MaqueenLite | MaqueenPlus>,
-    walls: Array<RectangleWall | CircleWall | PolygoneWall>,
-    marks: Array<RectangleMark | CircleMark | PolygoneMark>,
-    zones: Array<RectangleZone | CircleZone | PolygoneZone>,
+    walls: Array<WallRectangle | WallCircle | WallPolygone>,
+    marks: Array<MarkRectangle | MarkCircle | MarkPolygone | Picture>,
+    zones: Array<ZoneRectangle | ZoneCircle | ZonePolygone>,
     mapLoad: Function,
     mapCreate: Function,
     mouse: boolean

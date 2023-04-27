@@ -1,24 +1,25 @@
 import Phaser from "phaser";
 import PhaserRaycaster from "phaser-raycaster";
-import { CircleMark } from "../environnement/mark/markCircle";
-import { PolygoneMark } from "../environnement/mark/markPolygone";
-import { RectangleMark } from "../environnement/mark/markRectangle";
-import { CircleWall } from "../environnement/wall/wallCircle";
-import { PolygoneWall } from "../environnement/wall/wallPolygone";
-import { RectangleWall } from "../environnement/wall/wallRectangle";
-import { CircleZone } from "../environnement/zones/zoneCircle";
-import { PolygoneZone } from "../environnement/zones/zonePolygone";
-import { RectangleZone } from "../environnement/zones/zoneRectangle";
+import { MarkCircle } from "../environnement/mark/markCircle";
+import { MarkPolygone } from "../environnement/mark/markPolygone";
+import { MarkRectangle } from "../environnement/mark/markRectangle";
+import { WallCircle } from "../environnement/wall/wallCircle";
+import { WallPolygone } from "../environnement/wall/wallPolygone";
+import { WallRectangle } from "../environnement/wall/wallRectangle";
+import { ZoneCircle } from "../environnement/zones/zoneCircle";
+import { ZonePolygone } from "../environnement/zones/zonePolygone";
+import { ZoneRectangle } from "../environnement/zones/zoneRectangle";
 import { MaqueenLite } from "../robot/maqueeLite";
 import { MaqueenPlus } from "../robot/maqueenPlus";
+import { Picture } from "../environnement/mark/picture";
 import { Field } from "./scene/field";
 import { Overlay } from "./scene/overlay";
 
 export class Simulation {
   public robots: any;
-  public walls: Array<RectangleWall | CircleWall | PolygoneWall>;
-  public marks: Array<RectangleMark | CircleMark | PolygoneMark>;
-  public zones: Array<RectangleZone | CircleZone | PolygoneZone>;
+  public walls: Array<WallRectangle | WallCircle | WallPolygone>;
+  public marks: Array<MarkRectangle | MarkCircle | MarkPolygone | Picture>;
+  public zones: Array<ZoneRectangle | ZoneCircle | ZonePolygone>;
   protected game: Phaser.Game;
   public constructor(
     width: number,

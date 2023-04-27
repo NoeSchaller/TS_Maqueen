@@ -1,7 +1,7 @@
 {
   "name": "maqueen-simulation",
   "description": "TM ts",
-  "main": "/src/index.ts",
+  "main": "/src/merge.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -16,19 +16,19 @@ export class I2cLite {
         if (byte.length == 3) {
           const dirL = byte[1],
             pL = byte[2];
-          this.robot.leftMotor.setSpeed(dirL, pL);
+          this.robot.motorLeft.setSpeed(dirL, pL);
         } else if (byte.length >= 5) {
           const dirL = byte[1],
             pL = byte[2],
             dirR = byte[3],
             pR = byte[4];
-          this.robot.leftMotor.setSpeed(dirL, pL);
-          this.robot.rightMotor.setSpeed(dirR, pR);
+          this.robot.motorLeft.setSpeed(dirL, pL);
+          this.robot.motorRight.setSpeed(dirR, pR);
         }
       } else if (register == 0x02) {
         const dirR = byte[1],
           pR = byte[2];
-        this.robot.rightMotor.setSpeed(dirR, pR);
+        this.robot.motorRight.setSpeed(dirR, pR);
       }
     }
   }

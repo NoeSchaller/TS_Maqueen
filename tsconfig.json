@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "lib": ["ESNext", "DOM", "ScriptHost"],
+    "target": "es6",
     "checkJs": false,
     "skipLibCheck": false,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "CommonJS",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -16,7 +16,7 @@
       "@type": ["./src/type"],
       "@src": ["./src"]
     },
-    "outDir": "/build"
+    "outDir": "build"
   },
   "include": ["src"]
 }

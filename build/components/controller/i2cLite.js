@@ -1,0 +1,26 @@
+export class I2cLite {
+    constructor(robot) {
+        this.robot = robot;
+    }
+    write(adresse, byte) {
+        if (adresse == 0x10) {
+            const register = byte[0];
+            //gestion des moteur
+            if (register == 0x00) {
+                if (byte.length == 3) {
+                    const dirL = byte[1], pL = byte[2];
+                    this.robot.motorLeft.setSpeed(dirL, pL);
+                }
+                else if (byte.length >= 5) {
+                    const dirL = byte[1], pL = byte[2], dirR = byte[3], pR = byte[4];
+                    this.robot.motorLeft.setSpeed(dirL, pL);
+                    this.robot.motorRight.setSpeed(dirR, pR);
+                }
+            }
+            else if (register == 0x02) {
+                const dirR = byte[1], pR = byte[2];
+                this.robot.motorRight.setSpeed(dirR, pR);
+            }
+        }
+    }
+}
